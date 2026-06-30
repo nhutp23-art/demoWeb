@@ -1,0 +1,14 @@
+uef\edu\vn\model\Doctor.class
+uef\edu\vn\model\DoctorAssignment.class
+uef\edu\vn\repository\MedicalServiceRepository.class
+uef\edu\vn\controller\MedicalServiceController.class
+uef\edu\vn\model\MedicalService.class
+uef\edu\vn\controller\DoctorController.class
+uef\edu\vn\repository\DoctorRepository.class
+uef\edu\vn\repository\PatientRepository.class
+uef\edu\vn\model\Appointment.class
+uef\edu\vn\repository\DoctorAssignmentRepository.class
+uef\edu\vn\repository\AppointmentRepository.class
+uef\edu\vn\controller\PatientController.class
+uef\edu\vn\model\Patient.class
+uef\edu\vn\controller\DoctorAssignmentController.class

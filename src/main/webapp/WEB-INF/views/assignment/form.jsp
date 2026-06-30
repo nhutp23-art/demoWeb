@@ -1,0 +1,174 @@
+<%-- 
+    Document   : form
+    Created on : Jun 23, 2026, 11:44:48 AM
+    Author     : ADMIN
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c"
+          uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@taglib prefix="form"
+          uri="http://www.springframework.org/tags/form"%>
+
+<%@include file="../layout/header.jsp"%>
+<%@include file="../layout/menu.jsp"%>
+
+<c:set var="editing"
+       value="${assignment.assignmentID>0}" />
+
+<div class="container mt-4">
+
+    <h3>
+
+        <c:choose>
+
+            <c:when test="${editing}">
+                Edit Assignment
+            </c:when>
+
+            <c:otherwise>
+                Assign Doctor
+            </c:otherwise>
+
+        </c:choose>
+
+    </h3>
+
+    <hr>
+
+    <c:if test="${not empty error}">
+
+        <div class="alert alert-danger">
+
+            ${error}
+
+        </div>
+
+    </c:if>
+
+    <form:form
+        method="post"
+        modelAttribute="assignment"
+        action="${pageContext.request.contextPath}/assignment/save">
+
+        <form:hidden path="assignmentID"/>
+
+        <div class="mb-3">
+
+            <label>
+
+                Medical Service
+
+            </label>
+
+            <form:select
+                path="serviceCode"
+                cssClass="form-select">
+
+                <form:option value="">
+                    -- Select Service --
+                </form:option>
+
+                <c:forEach
+                    items="${services}"
+                    var="s">
+
+                    <form:option
+                        value="${s.serviceCode}">
+
+                        ${s.serviceCode}
+                        -
+                        ${s.serviceName}
+
+                    </form:option>
+
+                </c:forEach>
+
+            </form:select>
+
+            <form:errors
+                path="serviceCode"
+                cssClass="text-danger"/>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+
+                Doctor
+
+            </label>
+
+            <form:select
+                path="doctorID"
+                cssClass="form-select">
+
+                <form:option value="0">
+
+                    -- Select Doctor --
+
+                </form:option>
+
+                <c:forEach
+                    items="${doctors}"
+                    var="d">
+
+                    <form:option
+                        value="${d.doctorID}">
+
+                        ${d.fullName}
+
+                    </form:option>
+
+                </c:forEach>
+
+            </form:select>
+
+            <form:errors
+                path="doctorID"
+                cssClass="text-danger"/>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+
+                Assignment Date
+
+            </label>
+
+            <form:input
+                path="assignmentDate"
+                type="date"
+                cssClass="form-control"/>
+
+            <form:errors
+                path="assignmentDate"
+                cssClass="text-danger"/>
+
+        </div>
+
+        <button
+            class="btn btn-primary">
+
+            Save
+
+        </button>
+
+        <a
+            href="${pageContext.request.contextPath}/assignment"
+            class="btn btn-secondary">
+
+            Back
+
+        </a>
+
+    </form:form>
+
+</div>
+
+<%@include file="../layout/footer.jsp"%>
